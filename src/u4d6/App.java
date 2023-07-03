@@ -2,10 +2,15 @@ package u4d6;
 
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import u4d6.exceptions.InvalidNameException;
 import u4d6.exceptions.NumberLessThanZeroException;
 
 public class App {
+	private static Logger log = LoggerFactory.getLogger(App.class);
+
 	public static void main(String[] args) {
 
 		// ****************** EXCEPTION EXAMPLES *******************
@@ -24,29 +29,29 @@ public class App {
 //		int result = a / b; // <-- UNCHECKED (ArithmeticException)
 //		System.out.println(result);
 
-		try {
-			int a = 2;
-			int b = 1;
-			int result = a / b; // <-- UNCHECKED (ArithmeticException)
-			System.out.println(result);
-
-			String s1 = "asda";
-//			s1 = null;
-			s1.toUpperCase();
-
-			int[] numbers = { 1, 2, 3, 4, 5 };
-			System.out.println(numbers[5]);
-
-		} catch (ArithmeticException e) {
-			System.out.println("Problema di tipo aritmetico");
-			e.printStackTrace();
-		} catch (NullPointerException e) {
-			System.out.println("Problema di tipo null pointer");
-			e.printStackTrace();
-		} catch (Exception e) {
-			System.out.println("Problema generico");
-			e.printStackTrace();
-		}
+//		try {
+//			int a = 2;
+//			int b = 1;
+//			int result = a / b; // <-- UNCHECKED (ArithmeticException)
+//			System.out.println(result);
+//
+//			String s1 = "asda";
+////			s1 = null;
+//			s1.toUpperCase();
+//
+//			int[] numbers = { 1, 2, 3, 4, 5 };
+//			System.out.println(numbers[5]);
+//
+//		} catch (ArithmeticException e) {
+//			System.out.println("Problema di tipo aritmetico");
+//			e.printStackTrace();
+//		} catch (NullPointerException e) {
+//			System.out.println("Problema di tipo null pointer");
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			System.out.println("Problema generico");
+//			e.printStackTrace();
+//		}
 
 		Scanner input = new Scanner(System.in);
 
@@ -55,10 +60,11 @@ public class App {
 			int a = Integer.parseInt(input.nextLine());
 			System.out.println("Dammi il secondo numero");
 			int b = Integer.parseInt(input.nextLine());
+			System.out.println("Il risultato è: " + (a + b));
+			log.info("Il risultato è: " + (a + b));
 
-			System.out.println(a + b);
 		} catch (NumberFormatException e) {
-			System.out.println("No bueno");
+			log.error(e.getMessage());
 		} finally {
 			input.close();
 		}

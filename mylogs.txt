@@ -1,0 +1,1 @@
+14:25:43 INFO  [main] App: Il risultato è: 7
